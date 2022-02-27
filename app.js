@@ -1,6 +1,4 @@
-// zmienna z wyświetlaczem
 const screen = document.querySelector(".screenPanel");
-// zmienna z klawiaturą - rodzic
 const keyboard = document.querySelector(".numericKeyboard");
 
 const keys = [
@@ -23,13 +21,13 @@ const keys = [
   "=",
 ];
 
-// funkcja tworząca przyciski
 const createButtons = () => {
-  keys.forEach((element, index) => {
+  keys.forEach((btn) => {
     let button = document.createElement("button");
-    button.innerHTML = element;
+    button.innerHTML = btn;
+    button.classList.add('btn');
     button.addEventListener("click", calculate);
-    if (element === "=") {
+    if (btn === "=") {
       button.classList.add("sum");
     }
 
@@ -39,7 +37,6 @@ const createButtons = () => {
 
 let result = ``;
 
-// function that handles button click
 const calculate = (event) => {
   const signs = ["+", "-", "*", "/", ".", " "];
 
@@ -77,7 +74,6 @@ const calculate = (event) => {
 
     case ".":
       let templateArray = screen.innerHTML.split(" ");
-      // an array which contains only math expressions ex. ["12.5"]
       let containExpressionsArray = templateArray.filter((element) => {
         return !signs.includes(element);
       });
@@ -91,10 +87,6 @@ const calculate = (event) => {
       ) {
         break;
       }
-
-      // templateArray.forEach((element) => {
-      //   cokolwiek
-      // })
 
       result += event.target.innerHTML;
       screen.innerHTML = result;
@@ -119,11 +111,3 @@ const calculate = (event) => {
 };
 
 createButtons();
-
-// git init
-
-// git add
-// git status
-// git commit -m "inital commit"
-// git log
-// git push
